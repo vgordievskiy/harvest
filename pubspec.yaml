@@ -13,7 +13,3 @@ dev_dependencies:
   polymer: any
   route_hierarchical: any
   test: any
-transformers:
-- polymer:
-    entry_points:
-     - test/harvest_idb_test.html
