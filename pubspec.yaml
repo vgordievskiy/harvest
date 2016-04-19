@@ -11,14 +11,14 @@ dependencies:
   uuid: any
 dev_dependencies:
   # begin polymer dependency section
-  polymer: "^0.16.4+1"
+  #polymer: "^0.16.4+1"
   #web_components: "^0.12.0+3"
   #reflectable: "^0.3.3"
-  route_hierarchical: "^0.6.2"
+  #route_hierarchical: "^0.6.2"
   # end polymer section
   test: any
-transformers:
-- polymer:
-    entry_points:
-      - test/harvest_idb_test.html
-    $include: test/**_test{.*,}.{dart,html}
+#transformers:
+#- polymer:
+#    entry_points:
+#      - test/harvest_idb_test.html
+#    $include: test/**_test{.*,}.{dart,html}
