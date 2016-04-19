@@ -1,17 +1,20 @@
-// Copyright (c) 2013-2015, the Harvest project authors. Please see the AUTHORS 
-// file for details. All rights reserved. Use of this source code is governed 
+// Copyright (c) 2013, the Harvest project authors. Please see the AUTHORS
+// file for details. All rights reserved. Use of this source code is governed
 // by a Apache license that can be found in the LICENSE file.
 
 part of harvest_sample;
 
 class Item extends AggregateRoot {
+  bool _activated;
+  String _name;
+
   factory Item.create(String name, Guid id) {
     var item = new Item(id);
     item.applyChange(new ItemCreated(item.id, name));
     return item;
   }
-  
-  Item(Guid itemId): super(itemId); 
+
+  Item(Guid itemId): super(itemId);
 
   apply(var event) {
     if(event is ItemCreated) {
@@ -24,7 +27,9 @@ class Item extends AggregateRoot {
 
   set name(String newName) {
     assert(newName != null && newName.isEmpty == false);
-    applyChange(new ItemRenamed(id, newName));
+    if(newName != _name) {
+      applyChange(new ItemRenamed(id, newName));
+    }
   }
 
   decreaseInventory(int count) {
@@ -40,7 +45,4 @@ class Item extends AggregateRoot {
     assert(_activated);
     applyChange(new ItemRemoved(id));
   }
-  
-  bool _activated;
-  String _name;
 }
