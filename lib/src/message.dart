@@ -47,4 +47,4 @@ typedef MessageHandler(Message message);
 /**
  * Function invoked when a message subscriber fails
  */
-typedef void MessageErrorHandler(Object object, [StackTrace detail = null]);
+typedef void MessageErrorHandler(Object object, [StackTrace detail]);
