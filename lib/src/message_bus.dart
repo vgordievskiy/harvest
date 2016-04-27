@@ -1,4 +1,4 @@
-// Copyright (c) 2013, the Harvest project authors. Please see the AUTHORS 
+// Copyright (c) 2013, the Harvest project authors. Please see the AUTHORS
 // file for details. All rights reserved. Use of this source code is governed
 // by a Apache license that can be found in the LICENSE file.
 
@@ -128,7 +128,9 @@ class MessageCoordinator {
    */
   MessageStreamSubscription listen(Type messageType,
                                    StreamController<Message> controller,
-                                   void onData(Message message), MessageErrorHandler onError, bool cancelOnError) {
+                                   void onData(Message message),
+                                   /*MessageErrorHandler*/ onError,
+                                   bool cancelOnError) {
     StreamSubscription<Message> subscription;
     subscription = controller.stream.listen((Message message) {
       // check if subscription is still active before each delivery to satiesfy cancelOnError
@@ -346,9 +348,9 @@ class MessageStream extends Stream<Message> {
   MessageStream(this._wrapped, this._coordinator, this.messageType);
 
   StreamSubscription<Message> listen(void onData(Message event),
-                               { Function onError,
+                               { Function onError: null,
                                  void onDone(),
-                                 bool cancelOnError}) {
+                                 bool cancelOnError: null}) {
 
     return _coordinator.listen(messageType, _wrapped, onData, onError, cancelOnError);
   }
